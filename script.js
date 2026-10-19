@@ -145,7 +145,7 @@ if ($("playersGrid")) {
   $("playersGrid").innerHTML = mains.map((player, index) => `
     <article class="player-card">
       <div class="player-photo">
-        <img src="${player.photo}" alt="${player.name}" loading="lazy">
+        <img src="./${player.photo}" alt="${player.name}" loading="lazy">
         <div class="player-number">0${index + 1}</div>
       </div>
       <div class="player-info">
@@ -161,7 +161,7 @@ if ($("subGrid")) {
   $("subGrid").innerHTML = subs.map(player => `
     <article class="sub-card">
       <div class="sub-photo">
-        <img src="${player.photo}" alt="${player.name}" loading="lazy">
+        <img src="./${player.photo}" alt="${player.name}" loading="lazy">
       </div>
       <div>
         <span>${player.role}</span>
@@ -175,7 +175,7 @@ if ($("subGrid")) {
 if ($("galleryGrid")) {
   $("galleryGrid").innerHTML = gallery.map(item => `
     <div class="gallery-item ${item.big ? "big" : ""}">
-      <img src="img/${item.img}" alt="${item.text}" loading="lazy">
+      <img src="./${item.img}" alt="${item.text}" loading="lazy">
       <div class="gallery-overlay">
         <span>W4RPAD</span>
         <strong>${item.text}</strong>
@@ -366,7 +366,7 @@ function renderHeroPools(map) {
     section.innerHTML = `
       <div class="hero-player-header">
         <div class="hero-player-photo">
-          <img src="${player.photo}" alt="${player.name}" loading="lazy">
+          <img src="./${player.photo}" alt="${player.name}" loading="lazy">
         </div>
         <div class="hero-player-info">
           <span>${player.reserve ? "RESERVE PLAYER" : "MAIN PLAYER"}</span>
@@ -467,7 +467,10 @@ window.addEventListener("scroll", () => {
       particle.style.left = Math.random() * 100 + "%";
       particle.style.animationDelay = Math.random() * 8 + "s";
       particle.style.animationDuration = (5 + Math.random() * 7) + "s";
-      particle.style.setProperty("--drift", (Math.random() * 100 - 50) + "px");
+      particle.style.setProperty(
+        "--drift",
+        (Math.random() * 100 - 50) + "px"
+      );
       particles.appendChild(particle);
     }
   }
@@ -498,7 +501,6 @@ window.addEventListener("scroll", () => {
     showHome();
   }
 
-  // Cahaya mengikuti posisi kursor.
   home.addEventListener("pointermove", event => {
     const rect = home.getBoundingClientRect();
     home.style.setProperty("--mouse-x", (event.clientX - rect.left) + "px");
@@ -561,7 +563,6 @@ window.addEventListener("scroll", () => {
 
   function startLoadingProgress() {
     clearInterval(progressTimer);
-
     progress = 1;
 
     if (progressBar) progressBar.style.width = "1%";
@@ -648,7 +649,6 @@ window.addEventListener("scroll", () => {
     }
 
     let life = 0;
-
     cancelAnimationFrame(boltAnimation);
 
     function draw() {
@@ -674,9 +674,7 @@ window.addEventListener("scroll", () => {
 
     try {
       thunderAudio.currentTime = 0;
-    } catch (error) {
-      // Audio belum siap.
-    }
+    } catch (error) {}
   }
 
   function stopIntro() {
@@ -692,7 +690,6 @@ window.addEventListener("scroll", () => {
     progressTimer = 0;
 
     stopThunder();
-
     splash.classList.add("hide");
     document.body.style.overflow = "";
   }
@@ -723,7 +720,6 @@ window.addEventListener("scroll", () => {
     cancelAnimationFrame(boltAnimation);
 
     stopThunder();
-
     introActive = true;
 
     splash.classList.remove("hide");
@@ -731,12 +727,13 @@ window.addEventListener("scroll", () => {
 
     startLoadingProgress();
 
-    splash.querySelectorAll(".splash-text, .splash-loading, .splash-progress i")
-      .forEach(element => {
-        element.style.animation = "none";
-        void element.offsetWidth;
-        element.style.animation = "";
-      });
+    splash.querySelectorAll(
+      ".splash-text, .splash-loading, .splash-progress i"
+    ).forEach(element => {
+      element.style.animation = "none";
+      void element.offsetWidth;
+      element.style.animation = "";
+    });
 
     strike();
     boltTimer = setInterval(strike, 420);
@@ -758,7 +755,6 @@ window.addEventListener("scroll", () => {
       }
     }
 
-    // Intro berlangsung sampai progress mencapai 100%.
     introTimeout = setTimeout(() => {
       if (progress < 100) {
         const waitForProgress = setInterval(() => {
@@ -775,7 +771,6 @@ window.addEventListener("scroll", () => {
 
   function finishIntro() {
     stopIntro();
-
     document.body.classList.add("flash");
 
     flashTimeout = setTimeout(() => {
@@ -795,9 +790,7 @@ window.addEventListener("scroll", () => {
   window.playIntro();
 
   document.addEventListener("click", event => {
-    if (
-      event.target.closest(".nav-logo, .footer-logo, .contact-logo")
-    ) {
+    if (event.target.closest(".nav-logo, .footer-logo, .contact-logo")) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       window.playIntro();
     }
@@ -862,9 +855,7 @@ window.addEventListener("scroll", () => {
       const response = await fetch(localURL, { method: "HEAD" });
 
       if (response.ok) url = localURL;
-    } catch (error) {
-      // File suara lokal tidak ditemukan.
-    }
+    } catch (error) {}
 
     if (!url) {
       try {
@@ -879,9 +870,7 @@ window.addEventListener("scroll", () => {
             url = urls[Math.floor(Math.random() * urls.length)];
           }
         }
-      } catch (error) {
-        // API suara tidak tersedia.
-      }
+      } catch (error) {}
     }
 
     cache[name] = url;
@@ -927,7 +916,6 @@ window.addEventListener("scroll", () => {
       audio = new Audio(url);
       audio.onended = end;
       audio.onerror = end;
-
       audio.play().catch(() => end());
     } else if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(name);
@@ -948,32 +936,44 @@ window.addEventListener("scroll", () => {
 /* ============ START ============ */
 loadHeroes();
 
-/* ============ TAMBAHAN BARU: REVEAL, TILT 3D, LOGO 3D KONTAK ============ */
+/* ============ REVEAL, TILT 3D, LOGO 3D KONTAK ============ */
 (function () {
   const targets =
     ".section-heading, .player-card, .sub-card, .gallery-item, " +
     ".hero-player-section, .contact-box, .contact-item";
 
-  const io = "IntersectionObserver" in window
-    ? new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 })
-    : null;
+  let io = null;
+
+  if ("IntersectionObserver" in window) {
+    io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+  }
 
   function scan() {
     document.querySelectorAll(targets).forEach(el => {
       if (el.dataset.rv) return;
       el.dataset.rv = "1";
 
-      const siblings = el.parentElement ? [...el.parentElement.children] : [];
-      el.style.setProperty("--rd", (siblings.indexOf(el) % 6) * 90 + "ms");
+      const siblings = el.parentElement
+        ? [...el.parentElement.children]
+        : [];
 
-      if (!io) return;
+      el.style.setProperty(
+        "--rd",
+        (siblings.indexOf(el) % 6) * 90 + "ms"
+      );
+
+      if (!io) {
+        el.classList.add("in");
+        return;
+      }
+
       el.classList.add("reveal");
       io.observe(el);
     });
@@ -981,12 +981,15 @@ loadHeroes();
 
   scan();
 
-  // hero pool dirender setelah API selesai, jadi pantau perubahan DOM
   let timer = 0;
+
   new MutationObserver(() => {
     clearTimeout(timer);
     timer = setTimeout(scan, 80);
-  }).observe(document.body, { childList: true, subtree: true });
+  }).observe(document.body, {
+    childList: true,
+    subtree: true
+  });
 
   /* tilt 3D kartu player */
   document.addEventListener("pointermove", event => {
@@ -1004,11 +1007,12 @@ loadHeroes();
   document.addEventListener("pointerout", event => {
     const card = event.target.closest?.(".player-card");
     if (!card) return;
+
     card.style.setProperty("--rx", "0deg");
     card.style.setProperty("--ry", "0deg");
   });
 
-  /* logo 3D kontak: ikut arah kursor */
+  /* logo 3D kontak */
   const logo = document.querySelector(".contact-logo");
 
   if (logo) {
@@ -1018,37 +1022,39 @@ loadHeroes();
     const img = logo.querySelector("img");
     const box = document.querySelector(".contact-box");
 
-    box.addEventListener("pointermove", event => {
-      const rect = logo.getBoundingClientRect();
-      const x = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
-      const y = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
+    if (img && box) {
+      box.addEventListener("pointermove", event => {
+        const rect = logo.getBoundingClientRect();
+        const x = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
+        const y = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
 
-      img.style.animation = "none";
-      img.style.transform =
-        `rotateY(${Math.max(-40, Math.min(40, x * 22))}deg) ` +
-        `rotateX(${Math.max(-40, Math.min(40, -y * 22))}deg) scale(1.06)`;
-    });
+        img.style.animation = "none";
+        img.style.transform =
+          `rotateY(${Math.max(-40, Math.min(40, x * 22))}deg) ` +
+          `rotateX(${Math.max(-40, Math.min(40, -y * 22))}deg) scale(1.06)`;
+      });
 
-    box.addEventListener("pointerleave", () => {
-      img.style.transform = "";
-      img.style.animation = "";
-    });
+      box.addEventListener("pointerleave", () => {
+        img.style.transform = "";
+        img.style.animation = "";
+      });
+    }
   }
 })();
-/* ============ INTRO ULAR (GAMBAR) BERGERAK - setelah intro petir ============ */
+
+/* ============ INTRO ULAR SETELAH INTRO PETIR ============ */
 (function () {
   const splash = $("splash");
   if (!splash) return;
 
-  // Pengaturan - boleh diubah
-  const IMG_SRC = "img/intro-ular.jpg";
-  const START_DELAY = 600;    // ms, tunggu layar petir memudar
-  const TOTAL_TIME = 6500;    // ms, lama intro ular tampil
+  // Gambar berada di folder utama repository.
+  const IMG_SRC = "./intro-ular.jpg";
+  const START_DELAY = 600;
+  const TOTAL_TIME = 6500;
 
   const reduceMotion =
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- muat gambar lebih awal supaya langsung siap ---- */
   const preload = new Image();
   preload.src = IMG_SRC;
 
@@ -1063,7 +1069,6 @@ loadHeroes();
 
   imageReady.catch(() => {});
 
-  /* ---- asap yang berputar pelan mengelilingi ular ---- */
   function startSmoke(canvas, box) {
     const ctx = canvas.getContext("2d");
     let w = 2;
@@ -1082,7 +1087,8 @@ loadHeroes();
       angle: Math.random() * Math.PI * 2,
       ring: 0.72 + Math.random() * 0.36,
       radius: 0.07 + Math.random() * 0.12,
-      speed: (0.00006 + Math.random() * 0.00018) * (Math.random() < 0.5 ? -1 : 1),
+      speed: (0.00006 + Math.random() * 0.00018) *
+        (Math.random() < 0.5 ? -1 : 1),
       phase: Math.random() * Math.PI * 2
     }));
 
@@ -1099,7 +1105,8 @@ loadHeroes();
         const x = w * 0.51 + Math.cos(p.angle) * w * 0.4 * p.ring;
         const y = h * 0.52 + Math.sin(p.angle) * h * 0.4 * p.ring;
         const r = p.radius * w;
-        const alpha = 0.045 + 0.05 * ((Math.sin(now * 0.001 + p.phase) + 1) / 2);
+        const alpha = 0.045 + 0.05 *
+          ((Math.sin(now * 0.001 + p.phase) + 1) / 2);
 
         const g = ctx.createRadialGradient(x, y, 0, x, y, r);
         g.addColorStop(0, `rgba(255,255,255,${alpha})`);
@@ -1113,7 +1120,6 @@ loadHeroes();
     }
 
     id = requestAnimationFrame(draw);
-
     window.addEventListener("resize", size);
 
     return () => {
@@ -1122,7 +1128,6 @@ loadHeroes();
     };
   }
 
-  /* ---- layar intro ---- */
   let overlay = null;
   let stopSmoke = null;
   let timers = [];
@@ -1145,14 +1150,12 @@ loadHeroes();
     leaving = true;
 
     const node = overlay;
-
     node.classList.add("out");
 
     timers.forEach(clearTimeout);
     timers = [];
 
     setTimeout(() => {
-      // kalau intro sudah diputar ulang, jangan ganggu yang baru
       if (overlay !== node) return;
 
       if (stopSmoke) {
@@ -1167,7 +1170,6 @@ loadHeroes();
   }
 
   function remove() {
-    // dipakai kalau intro petir diputar ulang (klik logo)
     stopAll();
 
     if (overlay) {
@@ -1212,15 +1214,17 @@ loadHeroes();
 
     node.addEventListener("click", leave);
 
-    // gerakan halus mengikuti kursor / jari
     const parallax = node.querySelector(".snake-parallax");
 
     node.addEventListener("pointermove", event => {
       parallax.style.setProperty(
-        "--px", ((event.clientX / window.innerWidth - 0.5) * 2).toFixed(3)
+        "--px",
+        ((event.clientX / window.innerWidth - 0.5) * 2).toFixed(3)
       );
+
       parallax.style.setProperty(
-        "--py", ((event.clientY / window.innerHeight - 0.5) * 2).toFixed(3)
+        "--py",
+        ((event.clientY / window.innerHeight - 0.5) * 2).toFixed(3)
       );
     });
 
