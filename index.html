@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>W4RPAD | Mobile Legends Team</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- TAMBAHAN: font elegan untuk judul -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- AUDIO PETIR -->
+<audio id="thunderAudio" src="audio/petir.mp3" preload="auto"></audio>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-logo" id="logoBtn">
+        <img src="img/logo.jpg" alt="Logo W4RPAD">
+        <span>W4RPAD</span>
+    </div>
+
+    <nav>
+        <a href="#home" class="active">HOME</a>
+        <a href="#players">PLAYERS</a>
+        <a href="#galeri">GALERI</a>
+        <a href="#hero-pool">HERO POOL</a>
+        <a href="#kontak">KONTAK</a>
+    </nav>
+</header>
+
+<!-- DRAFT BANNER -->
+<section class="draft-banner">
+    <div class="draft-bg"></div>
+
+    <div class="draft-content">
+        <div class="draft-title">
+            <span>W4RPAD</span>
+            <h1>DRAFT MODE</h1>
+            <p>RISE TOGETHER • PLAY TOGETHER • WIN TOGETHER</p>
+        </div>
+
+        <div class="draft-stage">
+            <div class="draft-side">
+                <small>W4RPAD</small>
+                <strong>YOUR TEAM</strong>
+            </div>
+
+            <div class="draft-heroes" id="draftHeroes"></div>
+
+            <div class="draft-side right">
+                <small>MLBB</small>
+                <strong>READY</strong>
+            </div>
+        </div>
+
+        <div class="draft-status">
+            <span class="pulse"></span>
+            HERO POOL ONLINE
+        </div>
+    </div>
+</section>
+
+<!-- HOME -->
+<section id="home" class="home">
+    <div class="home-content">
+        <div class="small-title">WELCOME TO</div>
+
+        <h1>W4<span>RPAD</span></h1>
+
+        <p>
+            Satu tim. Satu tujuan.<br>
+            Bermain bersama, berkembang bersama, menang bersama.
+        </p>
+
+        <a href="#players" class="main-btn">LIHAT ROSTER</a>
+    </div>
+</section>
+
+<!-- PLAYER TICKER -->
+<div class="player-ticker" aria-label="Nama pemain W4RPAD">
+    <div class="ticker-arrows" aria-hidden="true">»»»</div>
+
+    <div class="ticker-window">
+        <div class="ticker-track">
+            <div class="ticker-group">
+                <span>FAYYY</span><i>/</i>
+                <span>BRALYTZY</span><i>/</i>
+                <span>REPP</span><i>/</i>
+                <span>RAPP</span><i>/</i>
+                <span>BALLZYYY</span><i>/</i>
+            </div>
+
+            <div class="ticker-group" aria-hidden="true">
+                <span>FAYYY</span><i>/</i>
+                <span>BRALYTZY</span><i>/</i>
+                <span>REPP</span><i>/</i>
+                <span>RAPP</span><i>/</i>
+                <span>BALLZYYY</span><i>/</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="ticker-arrows reverse" aria-hidden="true">«««</div>
+</div>
+
+<!-- PLAYERS -->
+<section id="players" class="section">
+    <div class="section-heading">
+        <span>MAIN ROSTER</span>
+        <h2>OUR PLAYERS</h2>
+        <p>5 pemain utama W4RPAD</p>
+    </div>
+
+    <div class="players-grid" id="playersGrid"></div>
+</section>
+
+<!-- SUBSTITUTES -->
+<section class="section alt">
+    <div class="section-heading">
+        <span>RESERVE</span>
+        <h2>SUBSTITUTES</h2>
+        <p>Pemain cadangan W4RPAD</p>
+    </div>
+
+    <div class="substitute-grid" id="subGrid"></div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri" class="section">
+    <div class="section-heading">
+        <span>OUR MOMENTS</span>
+        <h2>GALERI</h2>
+        <p>Momen perjalanan W4RPAD</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- HERO POOL -->
+<section id="hero-pool" class="section alt">
+    <div class="section-heading">
+        <span>MLBB HERO POOL</span>
+        <h2>HERO POOL</h2>
+        <p>Hero pilihan setiap player W4RPAD • klik hero untuk dengar voice</p>
+    </div>
+
+    <div id="heroPoolContainer"></div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="section">
+    <div class="section-heading">
+        <span>GET IN TOUCH</span>
+        <h2>KONTAK</h2>
+        <p>Hubungi W4RPAD</p>
+    </div>
+
+    <div class="contact-box">
+        <div class="contact-logo">
+            <img src="img/logo.jpg" alt="W4RPAD">
+        </div>
+
+        <div class="contact-text">
+            <span>OFFICIAL TEAM</span>
+            <h3>W4RPAD</h3>
+            <p>
+                Untuk informasi, kerja sama, atau kebutuhan lainnya,
+                hubungi tim W4RPAD.
+            </p>
+        </div>
+
+        <div class="contact-items">
+            <div class="contact-item">
+                <span>TEAM</span>
+                <strong>W4RPAD</strong>
+            </div>
+
+            <div class="contact-item">
+                <span>GAME</span>
+                <strong>Mobile Legends</strong>
+            </div>
+
+            <div class="contact-item">
+                <span>REGION</span>
+                <strong>Indonesia</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo" id="footLogo">
+        <img src="img/logo.jpg" alt="W4RPAD">
+        <span>W4RPAD</span>
+    </div>
+
+    <p>© 2026 W4RPAD. All Rights Reserved.</p>
+
+    <div class="footer-line"></div>
+</footer>
+
+<!-- TOAST VOICE -->
+<div id="voiceToast" role="status"></div>
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
