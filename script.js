@@ -14,7 +14,7 @@ const playerPools = [
   {
     name: "Fayy' X W4RPAD",
     role: "JUNGLER",
-    photo: "img/fayy.jpg",
+    photo: "fayy.jpg",
     heroes: [
       "Alice", "Aulus", "Leomord", "Hirara", "Paquito",
       "Lukas", "Balmond", "Akai", "Bane", "Fanny",
@@ -26,7 +26,7 @@ const playerPools = [
   {
     name: "Bralytzy X W4RPAD",
     role: "MID LANER",
-    photo: "img/bralytzy.jpg",
+    photo: "Bralytzy.jpg",
     heroes: [
       "Nana", "Valentina", "Eudora", "Gord", "Kagura",
       "Cyclops", "Aurora", "Vexana", "Odette", "Zhask",
@@ -39,7 +39,7 @@ const playerPools = [
   {
     name: "Repp X W4RPAD",
     role: "GOLD LANER",
-    photo: "img/repp.jpg",
+    photo: "repp.jpg",
     heroes: [
       "Harith", "Claude", "Lesley", "Karrie", "Sun",
       "Ruby", "Bruno", "Clint", "Miya", "Layla",
@@ -51,7 +51,7 @@ const playerPools = [
   {
     name: "Rapp X W4RPAD",
     role: "ROAMER",
-    photo: "img/rapp.jpg",
+    photo: "rapp.jpg",
     heroes: [
       "Gloo", "Edith", "Belerick", "Gatotkaca", "Franco",
       "Baxia", "Tigreal", "Akai", "Khufra", "Hylos",
@@ -64,7 +64,7 @@ const playerPools = [
   {
     name: "Ballzyyy X W4RPAD",
     role: "EXP LANER",
-    photo: "img/ballzyyy.jpg",
+    photo: "Ballzyyy.jpg",
     heroes: [
       "Dyrroth", "Esmeralda", "Alice", "Gloo", "Terizla",
       "Edith", "Belerick", "Atlas", "Barats", "Uranus",
@@ -78,7 +78,7 @@ const playerPools = [
   {
     name: "Harun Nak Makan",
     role: "GOLD LANER",
-    photo: "img/harun.jpg",
+    photo: "harun.jpg",
     reserve: true,
     heroes: [
       "Ixia", "Irithel", "Brody", "Claude", "Granger",
@@ -88,7 +88,7 @@ const playerPools = [
   {
     name: "Dapaa Nonik",
     role: "ROAMER / JUNGLER",
-    photo: "img/dapaa.jpg",
+    photo: "dapaa.jpg",
     reserve: true,
     roles: [
       {
@@ -104,7 +104,7 @@ const playerPools = [
   {
     name: "Reyy",
     role: "ROAMER",
-    photo: "img/Reyy.jpg",
+    photo: "Reyy.jpg",
     reserve: true,
     roles: [
       {
